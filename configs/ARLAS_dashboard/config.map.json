@@ -1,0 +1,686 @@
+{
+  "layers": [
+    {
+      "id": "arlas_id:Turtle location:1662555443218",
+      "type": "line",
+      "source": "feature-arlas_track_trail-wide-argonautica_collection",
+      "minzoom": 1,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-opacity": 1,
+        "line-color": [
+          "get",
+          "name_arlas__color"
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "arlas_timestamp:normalized:name"
+          ],
+          0,
+          2,
+          0.2,
+          2.6,
+          0.4,
+          3.2,
+          0.6,
+          3.8,
+          0.8,
+          4.4,
+          1,
+          5
+        ]
+      },
+      "metadata": {
+        "collection": "argonautica_collection",
+        "collection-display-name": "argonautica_collection",
+        "is-scrollable-layer": false
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "arlas_timestamp:normalized:name"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "arlas_timestamp:normalized:name"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "arlas_id:Turtles' positions distribution:1662560530479",
+      "type": "fill",
+      "source": "cluster-point_geom-Fine-tile-cell-argonautica_collection",
+      "minzoom": 1,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-opacity": 0.7,
+        "fill-color": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "count_:normalized"
+          ],
+          0,
+          "#53d9e8",
+          0.2,
+          "#29AFFB",
+          0.4,
+          "#2874FA",
+          0.6,
+          "#3b69fa",
+          0.8,
+          "#eb79fc",
+          1,
+          "#ef586c"
+        ]
+      },
+      "metadata": {
+        "collection": "argonautica_collection",
+        "collection-display-name": "argonautica_collection",
+        "stroke": {
+          "color": "#fff",
+          "width": 0,
+          "opacity": 0
+        }
+      },
+      "filter": [
+        "all",
+        [
+          "all"
+        ]
+      ]
+    },
+    {
+      "id": "arlas_id:Chlorophyll:1662556640726",
+      "type": "fill",
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "minzoom": 2,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-opacity": 1,
+        "fill-color": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "chl_avg_:normalized"
+          ],
+          0,
+          "#16ccc9",
+          0.25,
+          "#cee897",
+          0.5,
+          "#9dc95b",
+          0.75,
+          "#4bc71e",
+          1,
+          "#1bc473"
+        ]
+      },
+      "metadata": {
+        "collection": "weather_collection",
+        "collection-display-name": "weather_collection",
+        "stroke": {
+          "color": "#fff",
+          "width": 0,
+          "opacity": 0
+        }
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "chl_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "chl_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "arlas_id:Sea Surface Temperature:1662556962218",
+      "type": "fill",
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "minzoom": 2,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-opacity": 1,
+        "fill-color": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "SST_avg_:normalized"
+          ],
+          0,
+          "#ee6d6d",
+          0.25,
+          "#d54e4e",
+          0.5,
+          "#8b2020",
+          0.75,
+          "#720707",
+          1,
+          "#450505"
+        ]
+      },
+      "metadata": {
+        "collection": "weather_collection",
+        "collection-display-name": "weather_collection",
+        "stroke": {
+          "color": "#fff",
+          "width": 0,
+          "opacity": 0
+        }
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "SST_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "SST_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "arlas_id:Sea Level Anomaly:1662557039700",
+      "type": "fill",
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "minzoom": 2,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-opacity": 1,
+        "fill-color": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "SLA_avg_:normalized"
+          ],
+          0,
+          "#53d9e8",
+          0.2,
+          "#29AFFB",
+          0.4,
+          "#2874FA",
+          0.6,
+          "#3b69fa",
+          0.8,
+          "#eb79fc",
+          1,
+          "#ef586c"
+        ]
+      },
+      "metadata": {
+        "collection": "weather_collection",
+        "collection-display-name": "weather_collection",
+        "stroke": {
+          "color": "#fff",
+          "width": 0,
+          "opacity": 0
+        }
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "SLA_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "SLA_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "arlas_id:Currents:1662557554955",
+      "type": "symbol",
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "minzoom": 2,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "visible",
+        "text-field": "→",
+        "text-font": [
+          "Open Sans Bold",
+          "Arial Unicode MS Bold"
+        ],
+        "text-size": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "current_speed_avg_:normalized"
+          ],
+          0,
+          5,
+          0.2,
+          6,
+          0.4,
+          7,
+          0.6,
+          8,
+          0.8,
+          9,
+          1,
+          10
+        ],
+        "text-rotate": [
+          "get",
+          "current_angle_avg_"
+        ],
+        "text-allow-overlap": false,
+        "text-anchor": "center"
+      },
+      "paint": {
+        "text-color": "#000000",
+        "text-opacity": 1,
+        "text-halo-color": "#000",
+        "text-halo-width": 0,
+        "text-halo-blur": 0,
+        "text-translate": [
+          0,
+          0
+        ]
+      },
+      "metadata": {
+        "collection": "weather_collection",
+        "collection-display-name": "weather_collection"
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "current_angle_avg_"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "current_angle_avg_"
+            ],
+            -1.7976931348623157e+308
+          ],
+          [
+            "<",
+            [
+              "get",
+              "current_speed_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "current_speed_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "arlas-select-arlas_id:Turtle location:1662555443218",
+      "type": "line",
+      "source": "feature-arlas_track_trail-wide-argonautica_collection",
+      "minzoom": 1,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "none"
+      },
+      "paint": {
+        "line-opacity": 1,
+        "line-color": [
+          "get",
+          "name_arlas__color"
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "arlas_timestamp:normalized:name"
+          ],
+          0,
+          14,
+          0.2,
+          14.6,
+          0.4,
+          15.2,
+          0.6,
+          15.8,
+          0.8,
+          16.4,
+          1,
+          17
+        ]
+      },
+      "metadata": {
+        "collection": "argonautica_collection",
+        "collection-display-name": "argonautica_collection",
+        "is-scrollable-layer": false
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "arlas_timestamp:normalized:name"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "arlas_timestamp:normalized:name"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "arlas-hover-arlas_id:Turtle location:1662555443218",
+      "type": "line",
+      "source": "feature-arlas_track_trail-wide-argonautica_collection",
+      "minzoom": 1,
+      "maxzoom": 23,
+      "layout": {
+        "visibility": "none"
+      },
+      "paint": {
+        "line-opacity": 1,
+        "line-color": [
+          "get",
+          "name_arlas__color"
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "get",
+            "arlas_timestamp:normalized:name"
+          ],
+          0,
+          14,
+          0.2,
+          14.6,
+          0.4,
+          15.2,
+          0.6,
+          15.8,
+          0.8,
+          16.4,
+          1,
+          17
+        ]
+      },
+      "metadata": {
+        "collection": "argonautica_collection",
+        "collection-display-name": "argonautica_collection",
+        "is-scrollable-layer": false
+      },
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "arlas_timestamp:normalized:name"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "arlas_timestamp:normalized:name"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ]
+    },
+    {
+      "source": "cluster-point_geom-Fine-tile-cell-argonautica_collection",
+      "id": "arlas-fill_stroke-Turtles' positions distribution:1662560530479",
+      "type": "line",
+      "maxzoom": 23,
+      "filter": [
+        "all",
+        [
+          "all"
+        ]
+      ],
+      "minzoom": 1,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "#fff",
+        "line-opacity": 0,
+        "line-width": 0
+      }
+    },
+    {
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "id": "arlas-fill_stroke-Chlorophyll:1662556640726",
+      "type": "line",
+      "maxzoom": 23,
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "chl_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "chl_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ],
+      "minzoom": 2,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "#fff",
+        "line-opacity": 0,
+        "line-width": 0
+      }
+    },
+    {
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "id": "arlas-fill_stroke-Sea Surface Temperature:1662556962218",
+      "type": "line",
+      "maxzoom": 23,
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "SST_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "SST_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ],
+      "minzoom": 2,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "#fff",
+        "line-opacity": 0,
+        "line-width": 0
+      }
+    },
+    {
+      "source": "feature-metric-location_id-box_geom--5-weather_collection",
+      "id": "arlas-fill_stroke-Sea Level Anomaly:1662557039700",
+      "type": "line",
+      "maxzoom": 23,
+      "filter": [
+        "all",
+        [
+          "all",
+          [
+            "<",
+            [
+              "get",
+              "SLA_avg_:normalized"
+            ],
+            1.7976931348623157e+308
+          ],
+          [
+            ">",
+            [
+              "get",
+              "SLA_avg_:normalized"
+            ],
+            -1.7976931348623157e+308
+          ]
+        ]
+      ],
+      "minzoom": 2,
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "#fff",
+        "line-opacity": 0,
+        "line-width": 0
+      }
+    }
+  ],
+  "external-event-layers": [
+    {
+      "id": "arlas-hover-arlas_id:Turtle location:1662555443218",
+      "on": "hover"
+    },
+    {
+      "id": "arlas-select-arlas_id:Turtle location:1662555443218",
+      "on": "select"
+    }
+  ]
+}
