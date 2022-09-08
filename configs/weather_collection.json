@@ -1,0 +1,7 @@
+{
+    "index_name": "weather_index",
+    "id_path": "unique_id",
+    "timestamp_path": "timestamp",
+    "centroid_path": "point_geom",
+    "geometry_path": "box_geom"
+}

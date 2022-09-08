@@ -1,0 +1,82 @@
+{
+    "mappings": {
+      "dynamic": false,
+      "properties": {
+        "internal": {
+          "properties": {
+            "fulltext": {
+              "type": "text"
+            },
+            "autocomplete": {
+              "type": "keyword"
+            }
+          }
+        },
+        "class": {
+          "type": "keyword"
+        },
+        "lat": {
+          "type": "double"
+        },
+        "lon": {
+          "type": "double"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "type": {
+          "type": "keyword"
+        },
+        "dateHour": {
+          "type": "date",
+          "format": "yyyy/MM/dd HH:mm"
+        },
+        "point_geom": {
+          "type": "geo_point"
+        },
+        "arlas_timestamp": {
+          "type": "date",
+          "format": "epoch_second"
+        },
+        "arlas_track_id": {
+          "type": "keyword"
+        },
+        "arlas_track_trail": {
+          "type": "geo_shape"
+        },
+        "arlas_track_dynamics_gps_speed": {
+          "type": "double"
+        },
+        "arlas_track_dynamics_gps_bearing": {
+          "type": "double"
+        },
+        "current_speed": {
+          "type": "double"
+        },
+        "current_angle": {
+          "type": "double"
+        },
+        "SLA": {
+          "type": "double"
+        },
+        "SST": {
+          "type": "double"
+        },
+        "CHL": {
+          "type": "double"
+        },
+        "dayOfYear": {
+          "type": "long"
+        },
+        "weekOfYear": {
+          "type": "long"
+        },
+        "month": {
+          "type": "long"
+        },
+        "year": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
