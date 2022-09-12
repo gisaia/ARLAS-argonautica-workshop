@@ -1,14 +1,39 @@
 # ARLAS workshop Argonautica
 
-## Introduction:
+* [ARLAS workshop Argonautica](#arlas-workshop-argonautica)
+   * [Introduction](#introduction)
+   * [What will you learn?](#what-will-you-learn)
+   * [Prepare the workshop](#prepare-the-workshop)
+   * [What will you get?](#what-will-you-get)
+* [Argonautica and weather data](#argonautica-and-weather-data)
+   * [Argonautica data](#argonautica-data)
+   * [Marine weather data](#marine-weather-data)
+* [Exploring multiple collections at once](#exploring-multiple-collections-at-once)
+   * [Indexing and loading data into ARLAS](#indexing-and-loading-data-into-arlas)
+      * [<strong>Setup</strong>](#setup)
+      * [<strong>Starting ARLAS Exploration Stack</strong>](#starting-arlas-exploration-stack)
+      * [<strong>Indexing data in Elasticsearch</strong>](#indexing-data-in-elasticsearch)
+         * [<strong>Argonautica data</strong>](#argonautica-data-1)
+         * [<strong>Weather data</strong>](#weather-data)
+      * [<strong>Declaring argonautica_index and weather_index in ARLAS</strong>](#declaring-argonauticaindex-and-weatherindex-in-arlas)
+   * [Creating a dashboard to explore Argonautica data with ARLAS](#creating-a-dashboard-to-explore-argonautica-data-with-arlas)
+      * [<strong>Choosing the collection</strong>](#choosing-the-collection)
+      * [<strong>Map configuration</strong>](#map-configuration)
+      * [<strong>Timeline configuration</strong>](#timeline-configuration)
+      * [<strong>Search bar configuration</strong>](#search-bar-configuration)
+      * [<strong>Save the dashbord and start exploring in ARLAS-wui</strong>](#save-the-dashbord-and-start-exploring-in-arlas-wui)
+      * [<strong>Analytics board</strong>](#analytics-board)
+      * [<strong>Geo Big Data</strong>](#geo-big-data)
+* [The final words](#the-final-words)
+
+
+## Introduction
 
 This workshop's aim is to present ARLAS's capabilities to explore big volumes of geo-spatial data using an analytic and geo-analytic approach through the cross study of loggerhead turtles' movements and climate conditions. It is a deeper dive into the data that was presented during [the talk at the 2022 GeoDataDays]().
 
-The first part of the workshop is a global presentation of the solution and different use cases in which it is used, and then a technical presentation.
+In [the first part](#argonautica-and-weather-data) of the workshop, we present which data sets we will use, as well as the processes that led to the final data that will be explored in this workshop.
 
-In the second part, we present the datasets as well as the process that led to them being in their current format.
-
-In the third part, we explore data of :
+In [the second part](#exploring-multi-collection-data), we will then explore data of :
 
 - Loggerhead turtles' movements from the [CNES educational program Argonautica](https://enseignants-mediateurs.cnes.fr/fr/enseignants-et-mediateurs/projets/argonautica)
 - Marine weather data from the [Copernicus Marine Service platform](https://resources.marine.copernicus.eu/products) 
@@ -29,7 +54,7 @@ With this tutorial, you'll be able to:
 - Reference the indexed data in ARLAS
 - Create a view of ARLAS-wui (a dashboard) to explore the impact of climate conditions on loggerhead turtles' movements using ARLAS-wui-hub and ARLAS-wui-builder
 
-## Prepare the workshop:
+## Prepare the workshop
 
 - The workshop is prepared to be run under Linux / Mac OSX operating system.
 - You will need to have `docker` and `docker-compose` installed
@@ -50,11 +75,13 @@ figure 0: Example of view thanks to the created dashboard
 
 <br/>
 
+# Argonautica and weather data
+
 ## Argonautica data
 
 Let's explore some animal tracking data.
 
-We built a dataset composed of 3 loggerhead turtles' movements between 2018 and 2021 from the [CNES educational program Argonautica](https://enseignants-mediateurs.cnes.fr/fr/enseignants-et-mediateurs/projets/argonautica).
+We built a dataset composed of 3 loggerhead turtles' movements between 2018 and 2021 from the [CNES educational program Argonautica](https://enseignants-mediateurs.cnes.fr/fr/enseignants-et-mediateurs/projets/argonautica). From the communicated positions, we added information regarding their movements (speed, trail, ...) as well as the climate conditions they encountered by interpolating those values from the un-merged global weather data set that we constitued as explain in the next section.
 
 This subset is stored in `argonautica_data.csv`. It contains __8 755__ positions described with the following columns:
 
@@ -80,16 +107,24 @@ The content of a line of the csv file looks like:
 
 ## Marine weather data
 
-The weather dataset is built by associating [Copernicus](https://resources.marine.copernicus.eu/products) datasets composed of data that could be useful to understand loggerhead turtles movements. They are spanning on different areas and time frames, and had to be interpolated and merged together on a common temporal and geographic grid. The data is then extracted in a bounding box around the positions of the turtle to reduce the size of the dataset.
+The weather dataset is built by associating [Copernicus](https://resources.marine.copernicus.eu/products) datasets composed of data that could be useful to understand loggerhead turtles movements. In order to obtain the weather data set that is in this workshop, the following process was applied:
+
+- Retrieve the interesting data sets form the Copernicus platform
+- Because of the download size limit, piece together each data set
+- Complete them with other data sets with the same variables to reach the maximum coverage possible
+- Interpolate them to a common temporal and spatial grid
+- Merge them together
+- From the Argonautica data selected, extract the daily bounding boxes that encompass the turtles movements, with a certain margin
+- Add to the data set the geometry of the cell that the weather record represent
 
 This subset is stored in `weather_data.csv`. It contains around __57 199__ processed weather records described with the following columns:
 
 - date; latitude; longitude: temporal and geospatial coordinates of the record
-- SLA: Sea Level Anomaly, or the difference in height between the avergae global sea height and the measured one (m)
-- SST: Sea Surface Temperature (°C)
-- chl: the quantity of chlorophyll measured
-- current_angle: the angle of the average surface currents (°)
-- current_speed: the speed of the average surface currents (m/s)
+- SLA: Sea Level Anomaly, or the difference in height between the avergae global sea height and the measured one ($m$)
+- SST: Sea Surface Temperature ($°C$)
+- chl: the quantity of chlorophyll measured ($mg/m^3$)
+- current_angle: the angle of the average surface currents ($°$)
+- current_speed: the speed of the average surface currents ($m/s$)
 - timestamp: the UNIX timestamp of the measure. It is used to indicate the temporality of the measure to ARLAS as seen in the `weather_collection.json`
 - unique_id: the unique ID of this record
 - dayOfYear; weekOfYear; month_name; year: helpers for the representation of periodic temporal data
@@ -105,11 +140,15 @@ The content of a line of the csv file looks like:
 
 <br/>
 
-## Exploring multi-collection data
+# Exploring multiple collections at once
 
-We will explore this data using ARLAS.
+## Indexing and loading data into ARLAS
 
-__0. Setup__
+Now that we discovered what the data represents and looks like, we will explore it through ARLAS. But before that, we need to load the data into ARLAS.
+
+### __Setup__
+
+Before diving into the exploration of the data, we need to retrieve the data, as well as the ARLAS stack itself, by following the steps below.
 
 - Create a repository dedicated to this tutorial
 
@@ -126,7 +165,7 @@ curl -o weather_data.csv -L "https://raw.githubusercontent.com/gisaia/ARLAS-argo
 curl -o argonautica_data.csv -L "https://raw.githubusercontent.com/gisaia/ARLAS-argonautica-workshop/master/data/argonautica_data.csv"
 ```
 
-Check that both data files are downloaded
+- Check that both data files are downloaded
 
 ```shell
 ls -l weather_data.csv
@@ -139,29 +178,36 @@ ls -l argonautica_data.csv
 (curl -L -O "https://github.com/gisaia/ARLAS-Exploration-stack/archive/develop.zip"; unzip develop.zip; rm develop.zip)
 ```
 
-Check that the `ARLAS-Exploration-stack-develop` stack is downloaded
+- Check that the `ARLAS-Exploration-stack-develop` stack is downloaded
 
 ```shell
 ls -l ARLAS-Exploration-stack-develop
 ```
 
 Now our tutorial environment is set up.
+
 <br/>
 
-__1. Starting ARLAS Exploration Stack__
+### __Starting ARLAS Exploration Stack__
+
+The ARLAS stack is composed of multiple entities that work together to allow the user to efficiently explore geo-spatial data. To start all of them, we execute the following script.
 
 ```shell
 ./ARLAS-Exploration-stack-develop/start.sh
 ```
 
-*Troubleshooting: if the ARLAS-stack does not start properly and you are on Linux, try the following command to increase the virtual memory given to Elasticsearch.*
+*Troubleshooting: if the ARLAS stack does not start properly and you are on Linux, try the following command to increase the virtual memory given to Elasticsearch.*
 
 ```shell
 sysctl -w vm.max_map_count=262144
 ```
 <br/>
 
-__2. Indexing Argonautica data in Elasticsearch__
+### __Indexing data in Elasticsearch__
+
+Once the stack is launched, we can use Elasticsearch and Logstash to index and upload the data into ARLAS.
+
+#### __Argonautica data__
 
 - Create `argonautica_index` index in Elasticsearch with `argonautica.es_mapping.json` mapping file
 
@@ -178,7 +224,9 @@ You can check that the index is successfuly created by running the following com
 curl -XGET "http://localhost:9200/argonautica_index/_mapping?pretty"
 ```
 
-- Index data that is in `argonautica_data.csv` in Elasticsearch. For that, we need Logstash as a data processing pipeline that ingests data in Elasticsearch. Logstash needs a configuration file (`argonautica2es.logstash.conf`) that indicates how to transform data from the CSV file and to index it in Elasticsearch.
+- Index data that is in `argonautica_data.csv` in Elasticsearch. 
+
+For that, we need Logstash as a data processing pipeline that ingests data in Elasticsearch. Logstash needs a configuration file (`argonautica2es.logstash.conf`) that indicates how to transform data from the CSV file and to index it in Elasticsearch.
 
 
 ```shell
@@ -186,7 +234,7 @@ curl "https://raw.githubusercontent.com/gisaia/ARLAS-argonautica-workshop/master
     -o argonautica2es.logstash.conf
 ```
 
-- Now we will use Logstash in order to apply the data model transformation and to index data in Elasticsearch given the `argonautica2es.logstash.conf` configuration file with the docker image `docker.elastic.co/logstash/logstash` :
+Now we will use Logstash in order to apply the data model transformation and to index data in Elasticsearch given the `argonautica2es.logstash.conf` configuration file with the docker image `docker.elastic.co/logstash/logstash` :
 
 ```shell
 network=$(docker network ls --format "table {{.Name}}" | grep arlas[-_]exploration)
@@ -205,7 +253,7 @@ curl -XGET http://localhost:9200/argonautica_index/_count?pretty
 ```
 <br/>
 
-__3. Indexing weather data in Elasticsearch__
+#### __Weather data__
 
 - Create `weather_index` index in Elasticsearch with `weather.es_mapping.json` mapping file
 
@@ -249,7 +297,7 @@ curl -XGET http://localhost:9200/weather_index/_count?pretty
 ```
 <br/>
 
-__4. Declaring `argonautica_index` and `weather_index` in ARLAS__
+### __Declaring `argonautica_index` and `weather_index` in ARLAS__
 
 ARLAS-server interfaces with data indexed in Elasticsearch via a collection reference.
 
@@ -294,7 +342,7 @@ curl -X GET "http://localhost:81/server/collections/weather_collection?pretty=tr
 ```
 <br/>
 
-__5. Create a dashboard to explore `Argonautica data` with ARLAS__
+## Creating a dashboard to explore `Argonautica data` with ARLAS
 
 ARLAS stack is up and running, we have both Argonautica and weather data available for exploration. We can now create our first dashboard composed of:
 - a map to observe the turtles' locations, the positions' geographical distribution and the weather data
@@ -315,7 +363,7 @@ After clicking on __Create__, you are automatically redirected to ARLAS-wui-buil
 
 <br/>
 
-### Choosing the collection
+### __Choosing the collection__
 
 The first thing we need to do is to tell ARLAS which collection of data we want to use to create our dashboard.
 
@@ -330,7 +378,7 @@ In our case we will choose the `argonautica_collection` as our main collection, 
 
 <br/>
 
-### Map configuration
+### __Map configuration__
 
 As a first step, we set the map at zoom level 3 and the map's center coordinates at Latitude=15° and Longitude=10°. This way, when loading the dashboard in ARLAS-wui, the map will cover the extent of the turtles positions: from the Atlantic to the Indian Ocean. 
 
@@ -561,7 +609,7 @@ You can play with the other parameters of the label representation to get a fanc
 
 In the end, we obtain the 5 following layers. It already is possible to explore the data, but adding some analytics and additional information helps to bring the best out of the data.
 
-### Timeline configuration
+### __Timeline configuration__
 
 First, let's find out the time period when these positions and weather records were emitted.
 
@@ -580,7 +628,7 @@ figure 27: Customise the timeline
 
 We can edit the render tab to select a curve histogram, which will allow us to see best both collections at once.
 
-### Search bar configuration
+### __Search bar configuration__
 
 To explore huge amounts of data without scrolling, the search bar can be a powerful tool. To define the search bar we can set:
 - the placeholder string
@@ -594,7 +642,7 @@ To explore huge amounts of data without scrolling, the search bar can be a power
 figure 28: Customise the 'Search' bar
 </p>
 
-### Save the dashbord and start exploring in ARLAS-wui
+### __Save the dashbord and start exploring in ARLAS-wui__
 
 Now we defined
 - the 'Turtle location' layer and weather layers in the map
@@ -623,7 +671,7 @@ To obtain this figure with as much contrast, you can select the area with turtle
 figure 30: 'Turtle location' in parallel with 'Chlorophyll'
 </p>
 
-### Analytics board
+### __Analytics board__
 
 Now that we can visualise the turtles' tracks and a summary of the climate conditions they encountered, what's next? To add ways to explore the data and gain other insights on it, we can define different types of analytics back in the builder. We can group them by `tab` (for example by whether they are related to turtles or climate conditions), as well as by `group`.
 
@@ -699,20 +747,20 @@ Since the Argos and GPS measures have an estimated error that can go up to multi
 figure 38: The finished analytics
 </p>
 
-Thanks to that histogram, we can filter out absurdly high values both in the ARLAS-wui and the preview on the right of the builder. By selecting the turtles' speeds up until 15 km/h, we can have a better insight on what the true loggerhead turtle average speed is.
+Thanks to that histogram, we can filter out absurdly high values both in the ARLAS-wui and the preview on the right of the builder. By selecting the turtles' speeds up until 15 m/s, we can have a better insight on what the true loggerhead turtle average speed is.
 
 <p align="center">
     <img src="./images/wui_Kercambre.png" width="100%">
 </p>
 <p align="center" style="font-style: italic;">
-figure 39: A filtered view of Kercambre's trajectory and the surrounding currents
+figure 39: A filtered view of Icare's trajectory and the surrounding currents
 </p>
 
-Take a look at the loop in athe middle of `Kercambre`'s trail, as well as to the count of the number of records that fit all the filters that have been set up-top. We can see gaps in the trail and a number of records that is lower than the initial one of 8755. This means that as turtles' positions do not fit anymore the set of filters that the user defined, they are not taken into account by other metrics, analytics or layers.
+Take a look at the loop in athe middle of `Icare`'s trail, as well as to the count of the number of records that fit all the filters that have been set up-top. We can see gaps in the trail and a number of records that is lower than the initial one of 8755. This means that as turtles' positions do not fit anymore the set of filters that the user defined, they are not taken into account by other metrics, analytics or layers.
 
 There exist many ways to filter and explore data in ARLAS, that could help you to see clearer through your mass of data, and help you save time doing the tedious task of inspecting entries of your file.
 
-### Geo Big Data
+### __Geo Big Data__
 
 For this tutorial, we only have a sample of 3 turtles to follow, among the more than __20 000__ Argos beacons that are active.
 
@@ -766,10 +814,10 @@ figure 44: Photo location distribution
 
 We have now the distribution of the turtles' entire sample. However, the distribution layer doesn't show the exact location of the turtles displayed on the right. 
 
-### The final words
+# The final words
 
 As you can see we created a simple dashboard to start exploring environmental data!
 
-Check out a more sophisticated dashboard about the Argonautica data that explores ~70000 turtles' positions as well as ~400 000 weather records in our [demo space]()!
+Check out a more sophisticated dashboard about the Argonautica data that explores ~70000 turtles' positions as well as ~400 000 weather records in our [demo space](https://demo.cloud.arlas.io/arlas/wui/?config_id=0Fy1OjjDK7z3564bx32q)!
 
 You can get inspired from our different [demos](https://demo.cloud.arlas.io/) to build other map layers and other widgets.
