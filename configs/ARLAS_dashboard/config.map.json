@@ -1,9 +1,9 @@
 {
   "layers": [
     {
-      "id": "arlas_id:Turtle location:1662555443218",
+      "id": "arlas_id:Turtle location:1662969824301",
       "type": "line",
-      "source": "feature-arlas_track_trail-wide-argonautica_collection",
+      "source": "feature-trail_geom-wide-argonautica_collection",
       "minzoom": 1,
       "maxzoom": 23,
       "layout": {
@@ -24,7 +24,7 @@
           ],
           [
             "get",
-            "arlas_timestamp:normalized:name"
+            "timestamp:normalized:name"
           ],
           0,
           2,
@@ -53,7 +53,7 @@
             "<",
             [
               "get",
-              "arlas_timestamp:normalized:name"
+              "timestamp:normalized:name"
             ],
             1.7976931348623157e+308
           ],
@@ -61,7 +61,7 @@
             ">",
             [
               "get",
-              "arlas_timestamp:normalized:name"
+              "timestamp:normalized:name"
             ],
             -1.7976931348623157e+308
           ]
@@ -119,7 +119,7 @@
       ]
     },
     {
-      "id": "arlas_id:Chlorophyll:1662556640726",
+      "id": "arlas_id:Chlorophyll:1662969845887",
       "type": "fill",
       "source": "feature-metric-location_id-box_geom--5-weather_collection",
       "minzoom": 2,
@@ -409,9 +409,9 @@
       ]
     },
     {
-      "id": "arlas-select-arlas_id:Turtle location:1662555443218",
+      "id": "arlas-select-arlas_id:Turtle location:1662969824301",
       "type": "line",
-      "source": "feature-arlas_track_trail-wide-argonautica_collection",
+      "source": "feature-trail_geom-wide-argonautica_collection",
       "minzoom": 1,
       "maxzoom": 23,
       "layout": {
@@ -430,7 +430,7 @@
           ],
           [
             "get",
-            "arlas_timestamp:normalized:name"
+            "timestamp:normalized:name"
           ],
           0,
           14,
@@ -459,7 +459,7 @@
             "<",
             [
               "get",
-              "arlas_timestamp:normalized:name"
+              "timestamp:normalized:name"
             ],
             1.7976931348623157e+308
           ],
@@ -467,7 +467,7 @@
             ">",
             [
               "get",
-              "arlas_timestamp:normalized:name"
+              "timestamp:normalized:name"
             ],
             -1.7976931348623157e+308
           ]
@@ -475,9 +475,9 @@
       ]
     },
     {
-      "id": "arlas-hover-arlas_id:Turtle location:1662555443218",
+      "id": "arlas-hover-arlas_id:Turtle location:1662969824301",
       "type": "line",
-      "source": "feature-arlas_track_trail-wide-argonautica_collection",
+      "source": "feature-trail_geom-wide-argonautica_collection",
       "minzoom": 1,
       "maxzoom": 23,
       "layout": {
@@ -496,7 +496,7 @@
           ],
           [
             "get",
-            "arlas_timestamp:normalized:name"
+            "timestamp:normalized:name"
           ],
           0,
           14,
@@ -525,7 +525,7 @@
             "<",
             [
               "get",
-              "arlas_timestamp:normalized:name"
+              "timestamp:normalized:name"
             ],
             1.7976931348623157e+308
           ],
@@ -533,7 +533,7 @@
             ">",
             [
               "get",
-              "arlas_timestamp:normalized:name"
+              "timestamp:normalized:name"
             ],
             -1.7976931348623157e+308
           ]
@@ -563,7 +563,7 @@
     },
     {
       "source": "feature-metric-location_id-box_geom--5-weather_collection",
-      "id": "arlas-fill_stroke-Chlorophyll:1662556640726",
+      "id": "arlas-fill_stroke-Chlorophyll:1662969845887",
       "type": "line",
       "maxzoom": 23,
       "filter": [
@@ -675,11 +675,11 @@
   ],
   "external-event-layers": [
     {
-      "id": "arlas-hover-arlas_id:Turtle location:1662555443218",
+      "id": "arlas-hover-arlas_id:Turtle location:1662969824301",
       "on": "hover"
     },
     {
-      "id": "arlas-select-arlas_id:Turtle location:1662555443218",
+      "id": "arlas-select-arlas_id:Turtle location:1662969824301",
       "on": "select"
     }
   ]

@@ -1,7 +1,7 @@
 {
     "index_name": "argonautica_index",
-    "id_path": "arlas_track_id",
-    "timestamp_path": "arlas_timestamp",
+    "id_path": "trail_id",
+    "timestamp_path": "timestamp",
     "centroid_path": "point_geom",
-    "geometry_path": "arlas_track_trail"
+    "geometry_path": "trail_geom"
 }

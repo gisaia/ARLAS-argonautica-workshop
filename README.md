@@ -62,17 +62,17 @@ This subset is stored in `argonautica_data.csv`. It contains __8 755__ positions
 - dateHour; lat; lon: temporal and geospatial coordinates of the record
 - name: name of the loggerhead turtle
 - point_geom: the position in WKT format
-- arlas_timestamp: the UNIX timestamp of the measure. It is used to indicate the temporality of the measure to ARLAS as seen in the `argonautica_collection.json`
-- arlas_track_id: the unique ID of this record
-- arlas_track_trail: the WKT line linking this point and the next one
-- arlas_track_dynamics_gps_speed: the computed GPS speed
-- arlas_track_dynamics_gps_bearing: the computed GPS orientation
+- timestamp: the UNIX timestamp of the measure. It is used to indicate the temporality of the measure to ARLAS as seen in the `argonautica_collection.json`
+- trail_id: the unique ID of this record
+- trail_geom: the WKT line linking this point and the next one
+- gps_speed: the computed GPS speed
+- gps_bearing: the computed GPS orientation
 - current_speed; current_angle; SLA; SST; CHL: climate conditions interpolated from the weather dataset
 - dayOfYear; weekOfYear; month; year: helpers for the representation of periodic temporal data
 
 The content of a line of the csv file looks like:
 
-|class|lat|lon|name|type|dateHour|point_geom|arlas_timestamp|arlas_track_id|arlas_track_trail|arlas_track_dynamics_gps_speed|arlas_track_dynamics_gps_bearing|current_speed|current_angle|SLA|SST|CHL|dayOfYear|weekOfYear|month|year|
+|class|lat|lon|name|type|dateHour|point_geom|timestamp|trail_id|trail_geom|gps_speed|gps_bearing|current_speed|current_angle|SLA|SST|CHL|dayOfYear|weekOfYear|month|year|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |B|37.7233|-0.0592|Gloria|Loggerhead turtle|2021/05/05 10:14|POINT(-0.0592 37.7233)|1620201690|Gloria#1620200940_1620202440|LINESTRING (-0.0585 37.7254, -0.0592 37.7233)|0.5786710530504017|194.82992333596488|0.0890163012627082|55.2911825117637|0.0357612146212001|18.053640347593728|0.1463965331146449|125|18|5|2021|
 

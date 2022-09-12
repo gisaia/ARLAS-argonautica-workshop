@@ -8,13 +8,13 @@
           "name": "Map argonautica_collection",
           "collection": "argonautica_collection",
           "geo_query_op": "Intersects",
-          "geo_query_field": "arlas_track_trail",
+          "geo_query_field": "trail_geom",
           "icon": "check_box_outline_blank",
           "layers_sources": [
             {
-              "id": "arlas_id:Turtle location:1662555443218",
+              "id": "arlas_id:Turtle location:1662969824301",
               "name": "Turtle location",
-              "source": "feature-arlas_track_trail-wide-argonautica_collection",
+              "source": "feature-trail_geom-wide-argonautica_collection",
               "minzoom": 1,
               "maxzoom": 23,
               "include_fields": [],
@@ -25,13 +25,13 @@
               "provided_fields": [],
               "normalization_fields": [
                 {
-                  "on": "arlas_timestamp",
+                  "on": "timestamp",
                   "per": "name"
                 }
               ],
               "metrics": [],
               "maxfeatures": 10000,
-              "returned_geometry": "arlas_track_trail",
+              "returned_geometry": "trail_geom",
               "render_mode": "wide"
             },
             {
@@ -70,7 +70,7 @@
           "icon": "check_box_outline_blank",
           "layers_sources": [
             {
-              "id": "arlas_id:Chlorophyll:1662556640726",
+              "id": "arlas_id:Chlorophyll:1662969845887",
               "name": "Chlorophyll",
               "source": "feature-metric-location_id-box_geom--5-weather_collection",
               "minzoom": 2,
@@ -203,7 +203,7 @@
           "aggregationmodels": [
             {
               "type": "datehistogram",
-              "field": "arlas_timestamp"
+              "field": "timestamp"
             }
           ],
           "additionalCollections": [
@@ -225,7 +225,7 @@
           "aggregationmodels": [
             {
               "type": "datehistogram",
-              "field": "arlas_timestamp"
+              "field": "timestamp"
             }
           ],
           "annexedContributorId": "timeline",
@@ -258,7 +258,7 @@
           "allowOperatorChange": true
         },
         {
-          "identifier": "argonautica_collection-arlas_track_dynamics_gps_speed-avg-0",
+          "identifier": "argonautica_collection-gps_speed-avg-0",
           "name": "Average speed",
           "title": "Average speed",
           "collection": "argonautica_collection",
@@ -267,7 +267,7 @@
           "function": "m[0]",
           "metrics": [
             {
-              "field": "arlas_track_dynamics_gps_speed",
+              "field": "gps_speed",
               "metric": "avg",
               "filter": {
                 "righthand": false
@@ -276,7 +276,7 @@
           ]
         },
         {
-          "identifier": "argonautica_collection-arlas_track_dynamics_gps_speed-numeric-bucket-Count--50",
+          "identifier": "argonautica_collection-gps_speed-numeric-bucket-Count--50",
           "name": "Turtles' speed",
           "title": "Turtles' speed",
           "collection": "argonautica_collection",
@@ -289,7 +289,7 @@
           "aggregationmodels": [
             {
               "type": "histogram",
-              "field": "arlas_track_dynamics_gps_speed"
+              "field": "gps_speed"
             }
           ]
         }
@@ -366,7 +366,7 @@
             ],
             "displayScale": true,
             "displayCurrentCoordinates": true,
-            "idFeatureField": "arlas_track_id",
+            "idFeatureField": "trail_id",
             "mapLayers": {
               "layers": [],
               "events": {
@@ -380,14 +380,14 @@
               {
                 "name": "All layers",
                 "layers": [
-                  "arlas_id:Turtle location:1662555443218"
+                  "arlas_id:Turtle location:1662969824301"
                 ],
                 "enabled": true
               },
               {
                 "name": "Chlorophyll",
                 "layers": [
-                  "arlas_id:Chlorophyll:1662556640726"
+                  "arlas_id:Chlorophyll:1662969845887"
                 ],
                 "enabled": false
               },
@@ -505,7 +505,7 @@
           "icon": "poll",
           "components": [
             {
-              "contributorId": "argonautica_collection-arlas_track_dynamics_gps_speed-avg-0",
+              "contributorId": "argonautica_collection-gps_speed-avg-0",
               "componentType": "metric",
               "input": {
                 "customizedCssClass": "power",
@@ -517,9 +517,9 @@
               }
             },
             {
-              "contributorId": "argonautica_collection-arlas_track_dynamics_gps_speed-numeric-bucket-Count--50",
+              "contributorId": "argonautica_collection-gps_speed-numeric-bucket-Count--50",
               "input": {
-                "id": "argonautica_collection-arlas_track_dynamics_gps_speed-numeric-bucket-Count--50",
+                "id": "argonautica_collection-gps_speed-numeric-bucket-Count--50",
                 "isHistogramSelectable": true,
                 "multiselectable": true,
                 "topOffsetRemoveInterval": 40,

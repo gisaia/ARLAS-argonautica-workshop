@@ -34,20 +34,20 @@
         "point_geom": {
           "type": "geo_point"
         },
-        "arlas_timestamp": {
+        "timestamp": {
           "type": "date",
           "format": "epoch_second"
         },
-        "arlas_track_id": {
+        "trail_id": {
           "type": "keyword"
         },
-        "arlas_track_trail": {
+        "trail_geom": {
           "type": "geo_shape"
         },
-        "arlas_track_dynamics_gps_speed": {
+        "gps_speed": {
           "type": "double"
         },
-        "arlas_track_dynamics_gps_bearing": {
+        "gps_bearing": {
           "type": "double"
         },
         "current_speed": {
