@@ -1,0 +1,7 @@
+{
+    "index_name": "argonautica_index",
+    "id_path": "trail_id",
+    "timestamp_path": "timestamp",
+    "centroid_path": "point_geom",
+    "geometry_path": "trail_geom"
+}

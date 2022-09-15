@@ -1,0 +1,628 @@
+{
+  "arlas": {
+    "web": {
+      "contributors": [
+        {
+          "type": "map",
+          "identifier": "argonautica_collection",
+          "name": "Map argonautica_collection",
+          "collection": "argonautica_collection",
+          "geo_query_op": "Intersects",
+          "geo_query_field": "trail_geom",
+          "icon": "check_box_outline_blank",
+          "layers_sources": [
+            {
+              "id": "arlas_id:Turtle location:1662969824301",
+              "name": "Turtle location",
+              "source": "feature-trail_geom-wide-argonautica_collection",
+              "minzoom": 1,
+              "maxzoom": 23,
+              "include_fields": [],
+              "short_form_fields": [],
+              "colors_from_fields": [
+                "name"
+              ],
+              "provided_fields": [],
+              "normalization_fields": [
+                {
+                  "on": "timestamp",
+                  "per": "name"
+                }
+              ],
+              "metrics": [],
+              "maxfeatures": 10000,
+              "returned_geometry": "trail_geom",
+              "render_mode": "wide"
+            },
+            {
+              "id": "arlas_id:Turtles' positions distribution:1662560530479",
+              "name": "Turtles' positions distribution",
+              "source": "cluster-point_geom-Fine-tile-cell-argonautica_collection",
+              "minzoom": 1,
+              "maxzoom": 23,
+              "include_fields": [],
+              "short_form_fields": [],
+              "colors_from_fields": [],
+              "provided_fields": [],
+              "normalization_fields": [],
+              "metrics": [
+                {
+                  "field": "",
+                  "metric": "count",
+                  "normalize": true
+                }
+              ],
+              "agg_geo_field": "point_geom",
+              "aggType": "tile",
+              "granularity": "Fine",
+              "minfeatures": 5000,
+              "aggregated_geometry": "cell"
+            }
+          ]
+        },
+        {
+          "type": "map",
+          "identifier": "weather_collection",
+          "name": "Map weather_collection",
+          "collection": "weather_collection",
+          "geo_query_op": "Intersects",
+          "geo_query_field": "point_geom",
+          "icon": "check_box_outline_blank",
+          "layers_sources": [
+            {
+              "id": "arlas_id:Chlorophyll:1662969845887",
+              "name": "Chlorophyll",
+              "source": "feature-metric-location_id-box_geom--5-weather_collection",
+              "minzoom": 2,
+              "maxzoom": 23,
+              "include_fields": [],
+              "short_form_fields": [],
+              "colors_from_fields": [],
+              "provided_fields": [],
+              "normalization_fields": [],
+              "metrics": [
+                {
+                  "field": "chl",
+                  "metric": "avg",
+                  "normalize": true
+                }
+              ],
+              "maxfeatures": 10000,
+              "raw_geometry": {
+                "geometry": "box_geom",
+                "sort": ""
+              },
+              "geometry_id": "location_id",
+              "network_fetching_level": 5
+            },
+            {
+              "id": "arlas_id:Sea Surface Temperature:1662556962218",
+              "name": "Sea Surface Temperature",
+              "source": "feature-metric-location_id-box_geom--5-weather_collection",
+              "minzoom": 2,
+              "maxzoom": 23,
+              "include_fields": [],
+              "short_form_fields": [],
+              "colors_from_fields": [],
+              "provided_fields": [],
+              "normalization_fields": [],
+              "metrics": [
+                {
+                  "field": "SST",
+                  "metric": "avg",
+                  "normalize": true
+                }
+              ],
+              "maxfeatures": 10000,
+              "raw_geometry": {
+                "geometry": "box_geom",
+                "sort": ""
+              },
+              "geometry_id": "location_id",
+              "network_fetching_level": 5
+            },
+            {
+              "id": "arlas_id:Sea Level Anomaly:1662557039700",
+              "name": "Sea Level Anomaly",
+              "source": "feature-metric-location_id-box_geom--5-weather_collection",
+              "minzoom": 2,
+              "maxzoom": 23,
+              "include_fields": [],
+              "short_form_fields": [],
+              "colors_from_fields": [],
+              "provided_fields": [],
+              "normalization_fields": [],
+              "metrics": [
+                {
+                  "field": "SLA",
+                  "metric": "avg",
+                  "normalize": true
+                }
+              ],
+              "maxfeatures": 10000,
+              "raw_geometry": {
+                "geometry": "box_geom",
+                "sort": ""
+              },
+              "geometry_id": "location_id",
+              "network_fetching_level": 5
+            },
+            {
+              "id": "arlas_id:Currents:1662557554955",
+              "name": "Currents",
+              "source": "feature-metric-location_id-box_geom--5-weather_collection",
+              "minzoom": 2,
+              "maxzoom": 23,
+              "include_fields": [],
+              "short_form_fields": [],
+              "colors_from_fields": [],
+              "provided_fields": [],
+              "normalization_fields": [],
+              "metrics": [
+                {
+                  "field": "current_speed",
+                  "metric": "avg",
+                  "normalize": true
+                },
+                {
+                  "field": "current_angle",
+                  "metric": "avg",
+                  "normalize": false,
+                  "short_format": false
+                }
+              ],
+              "maxfeatures": 10000,
+              "raw_geometry": {
+                "geometry": "box_geom",
+                "sort": ""
+              },
+              "geometry_id": "location_id",
+              "network_fetching_level": 5
+            }
+          ]
+        },
+        {
+          "type": "chipssearch",
+          "identifier": "chipssearch",
+          "collection": "argonautica_collection",
+          "search_field": "internal.fulltext",
+          "name": "Find a turtle",
+          "icon": "search",
+          "autocomplete_field": "internal.autocomplete",
+          "autocomplete_size": 10
+        },
+        {
+          "type": "histogram",
+          "identifier": "timeline",
+          "collection": "argonautica_collection",
+          "name": "Timeline",
+          "icon": "watch_later",
+          "isOneDimension": false,
+          "useUtc": true,
+          "numberOfBuckets": 50,
+          "aggregationmodels": [
+            {
+              "type": "datehistogram",
+              "field": "timestamp"
+            }
+          ],
+          "additionalCollections": [
+            {
+              "collectionName": "weather_collection",
+              "field": "timestamp"
+            }
+          ]
+        },
+        {
+          "type": "detailedhistogram",
+          "identifier": "detailedTimeline",
+          "collection": "argonautica_collection",
+          "name": "Timeline",
+          "icon": "watch_later",
+          "isOneDimension": false,
+          "useUtc": true,
+          "numberOfBuckets": 50,
+          "aggregationmodels": [
+            {
+              "type": "datehistogram",
+              "field": "timestamp"
+            }
+          ],
+          "annexedContributorId": "timeline",
+          "selectionExtentPercentage": 0.05,
+          "additionalCollections": [
+            {
+              "collectionName": "weather_collection",
+              "field": "timestamp"
+            }
+          ]
+        },
+        {
+          "identifier": "argonautica_collection-name-10-Count-desc-count",
+          "name": "Turtles' name",
+          "title": "Turtles' name",
+          "collection": "argonautica_collection",
+          "icon": "poll",
+          "type": "tree",
+          "jsonpath": "$.count",
+          "aggregationmodels": [
+            {
+              "type": "term",
+              "field": "name",
+              "size": 10,
+              "order": "desc",
+              "on": "count"
+            }
+          ],
+          "filterOperator": "Eq",
+          "allowOperatorChange": true
+        },
+        {
+          "identifier": "argonautica_collection-gps_speed-avg-0",
+          "name": "Average speed",
+          "title": "Average speed",
+          "collection": "argonautica_collection",
+          "icon": "poll",
+          "type": "metric",
+          "function": "m[0]",
+          "metrics": [
+            {
+              "field": "gps_speed",
+              "metric": "avg",
+              "filter": {
+                "righthand": false
+              }
+            }
+          ]
+        },
+        {
+          "identifier": "argonautica_collection-gps_speed-numeric-bucket-Count--50",
+          "name": "Turtles' speed",
+          "title": "Turtles' speed",
+          "collection": "argonautica_collection",
+          "icon": "poll",
+          "charttype": "bars",
+          "isOneDimension": false,
+          "type": "histogram",
+          "numberOfBuckets": 50,
+          "jsonpath": "$.count",
+          "aggregationmodels": [
+            {
+              "type": "histogram",
+              "field": "gps_speed"
+            }
+          ]
+        }
+      ],
+      "components": {
+        "timeline": {
+          "contributorId": "timeline",
+          "componentType": "histogram",
+          "input": {
+            "id": "histogram-timeline",
+            "xTicks": 9,
+            "yTicks": 2,
+            "xLabels": 9,
+            "yLabels": 2,
+            "xUnit": "",
+            "yUnit": "",
+            "chartXLabel": "",
+            "shortYLabels": false,
+            "chartTitle": "Timeline",
+            "customizedCssClass": "arlas-timeline",
+            "multiselectable": true,
+            "brushHandlesHeightWeight": 0.8,
+            "dataType": "time",
+            "isHistogramSelectable": true,
+            "ticksDateFormat": "%b %d %Y  %H:%M",
+            "chartType": "curve",
+            "chartHeight": 128,
+            "chartWidth": null,
+            "xAxisPosition": "bottom",
+            "yAxisStartsFromZero": true,
+            "descriptionPosition": "top",
+            "showXTicks": true,
+            "showYTicks": true,
+            "showXLabels": true,
+            "showYLabels": true,
+            "showHorizontalLines": false,
+            "isSmoothedCurve": true,
+            "barWeight": 0.8,
+            "topOffsetRemoveInterval": 10
+          }
+        },
+        "mapgl": {
+          "allowMapExtend": true,
+          "nbVerticesLimit": 100,
+          "input": {
+            "defaultBasemapStyle": {
+              "name": "Satellite Hybrid",
+              "styleFile": "https://api.maptiler.com/maps/hybrid/style.json?key=xIhbu1RwgdbxfZNmoXn4",
+              "image": "https://cloud.maptiler.com/static/img/maps/hybrid.png"
+            },
+            "basemapStyles": [
+              {
+                "name": "Basic",
+                "styleFile": "https://api.maptiler.com/maps/basic/style.json?key=xIhbu1RwgdbxfZNmoXn4",
+                "image": "https://cloud.maptiler.com/static/img/maps/basic.png"
+              },
+              {
+                "name": "Satellite Hybrid",
+                "styleFile": "https://api.maptiler.com/maps/hybrid/style.json?key=xIhbu1RwgdbxfZNmoXn4",
+                "image": "https://cloud.maptiler.com/static/img/maps/hybrid.png"
+              },
+              {
+                "name": "Streets-light",
+                "styleFile": "https://api.maptiler.com/maps/208a41eb-368f-4003-8e3c-2dba0d90b3cb/style.json?key=xIhbu1RwgdbxfZNmoXn4",
+                "image": "https://api.maptiler.com/maps/208a41eb-368f-4003-8e3c-2dba0d90b3cb/0/0/0.png?key=xIhbu1RwgdbxfZNmoXn4"
+              }
+            ],
+            "margePanForLoad": 5,
+            "margePanForTest": 5,
+            "initZoom": 3,
+            "initCenter": [
+              10,
+              15
+            ],
+            "displayScale": true,
+            "displayCurrentCoordinates": true,
+            "idFeatureField": "trail_id",
+            "mapLayers": {
+              "layers": [],
+              "events": {
+                "zoomOnClick": [],
+                "emitOnClick": [],
+                "onHover": []
+              },
+              "externalEventLayers": []
+            },
+            "visualisations_sets": [
+              {
+                "name": "All layers",
+                "layers": [
+                  "arlas_id:Turtle location:1662969824301"
+                ],
+                "enabled": true
+              },
+              {
+                "name": "Chlorophyll",
+                "layers": [
+                  "arlas_id:Chlorophyll:1662969845887"
+                ],
+                "enabled": false
+              },
+              {
+                "name": "Sea Surface Temperature",
+                "layers": [
+                  "arlas_id:Sea Surface Temperature:1662556962218"
+                ],
+                "enabled": false
+              },
+              {
+                "name": "Sea Level Anomaly",
+                "layers": [
+                  "arlas_id:Sea Level Anomaly:1662557039700"
+                ],
+                "enabled": false
+              },
+              {
+                "name": "Current",
+                "layers": [
+                  "arlas_id:Currents:1662557554955"
+                ],
+                "enabled": false
+              },
+              {
+                "name": "Turtles' positions distribution",
+                "layers": [
+                  "arlas_id:Turtles' positions distribution:1662560530479"
+                ],
+                "enabled": false
+              }
+            ]
+          }
+        },
+        "resultlists": [],
+        "detailedTimeline": {
+          "contributorId": "detailedTimeline",
+          "componentType": "histogram",
+          "input": {
+            "id": "histogram-detailed-timeline",
+            "xTicks": 5,
+            "yTicks": 2,
+            "xLabels": 5,
+            "yLabels": 2,
+            "xUnit": "",
+            "yUnit": "",
+            "chartXLabel": "",
+            "shortYLabels": false,
+            "chartTitle": "Detailed timeline",
+            "customizedCssClass": "arlas-detailed-timeline",
+            "multiselectable": false,
+            "brushHandlesHeightWeight": 0.8,
+            "dataType": "time",
+            "isHistogramSelectable": true,
+            "ticksDateFormat": "%b %d %Y  %H:%M",
+            "chartType": "curve",
+            "chartHeight": 60,
+            "chartWidth": null,
+            "xAxisPosition": "top",
+            "yAxisStartsFromZero": true,
+            "descriptionPosition": "bottom",
+            "showXTicks": true,
+            "showYTicks": true,
+            "showXLabels": true,
+            "showYLabels": true,
+            "showHorizontalLines": false,
+            "isSmoothedCurve": true,
+            "barWeight": 0.8
+          }
+        },
+        "share": {
+          "geojson": {
+            "max_for_feature": 5000,
+            "max_for_topology": 5000,
+            "sort_excluded_type": [
+              "TEXT",
+              "GEO_POINT"
+            ]
+          }
+        },
+        "download": {}
+      },
+      "analytics": [
+        {
+          "groupId": "Turtles' tracks-0",
+          "title": "Turtles",
+          "tab": "Turtles' tracks",
+          "icon": "poll",
+          "components": [
+            {
+              "contributorId": "argonautica_collection-name-10-Count-desc-count",
+              "showExportCsv": true,
+              "componentType": "powerbars",
+              "input": {
+                "chartTitle": "Turtles' name",
+                "powerbarTitle": "Turtles' name",
+                "displayFilter": true,
+                "scrollable": true,
+                "filterOperator": {
+                  "value": "Eq",
+                  "display": true
+                },
+                "useColorService": false,
+                "useColorFromData": false,
+                "unit": "",
+                "chartWidth": 445
+              }
+            }
+          ]
+        },
+        {
+          "groupId": "Turtles' tracks-1",
+          "title": "Turtles' speed",
+          "tab": "Turtles' tracks",
+          "icon": "poll",
+          "components": [
+            {
+              "contributorId": "argonautica_collection-gps_speed-avg-0",
+              "componentType": "metric",
+              "input": {
+                "customizedCssClass": "power",
+                "shortValue": false,
+                "valuePrecision": 1,
+                "chartWidth": 445,
+                "beforeValue": "Average turtle speed",
+                "afterValue": "km/h"
+              }
+            },
+            {
+              "contributorId": "argonautica_collection-gps_speed-numeric-bucket-Count--50",
+              "input": {
+                "id": "argonautica_collection-gps_speed-numeric-bucket-Count--50",
+                "isHistogramSelectable": true,
+                "multiselectable": true,
+                "topOffsetRemoveInterval": 40,
+                "leftOffsetRemoveInterval": 18,
+                "brushHandlesHeightWeight": 0.8,
+                "yAxisStartsFromZero": true,
+                "chartType": "bars",
+                "chartTitle": "Turtles' speed",
+                "chartHeight": 100,
+                "chartWidth": 445,
+                "xAxisPosition": "bottom",
+                "descriptionPosition": "bottom",
+                "xTicks": 4,
+                "yTicks": 1,
+                "xLabels": 4,
+                "yLabels": 4,
+                "xUnit": "",
+                "yUnit": "",
+                "chartXLabel": "",
+                "shortYLabels": false,
+                "showXTicks": true,
+                "showYTicks": true,
+                "showXLabels": true,
+                "showYLabels": true,
+                "showHorizontalLines": true,
+                "barWeight": 0.8,
+                "dataType": "numeric",
+                "customizedCssClass": "arlas-histogram-analytics",
+                "isSmoothedCurve": false
+              },
+              "componentType": "histogram",
+              "showExportCsv": ""
+            }
+          ]
+        }
+      ],
+      "colorGenerator": {
+        "keysToColors": []
+      },
+      "options": {
+        "drag_items": true,
+        "zoom_to_data": true,
+        "indicators": true,
+        "spinner": {
+          "show": true,
+          "color": "accent",
+          "diameter": 50
+        },
+        "tabs": [
+          {
+            "name": "Turtles' tracks",
+            "icon": "short_text",
+            "showIcon": true,
+            "showName": true
+          }
+        ]
+      },
+      "externalNode": {}
+    },
+    "server": {
+      "url": "http://localhost:81/server/",
+      "max_age_cache": 120,
+      "collection": {
+        "name": "argonautica_collection"
+      }
+    }
+  },
+  "arlas-wui": {
+    "web": {
+      "app": {
+        "components": {
+          "chipssearch": {
+            "name": "Find a turtle",
+            "icon": "search"
+          }
+        },
+        "name": "ARLAS",
+        "units": [
+          {
+            "collection": "argonautica_collection",
+            "unit": "argonautica_collection",
+            "ignored": false
+          },
+          {
+            "collection": "weather_collection",
+            "unit": "weather_collection",
+            "ignored": false
+          }
+        ],
+        "name_background_color": "#FF4081"
+      }
+    }
+  },
+  "extraConfigs": [
+    {
+      "configPath": "config.map.json",
+      "replacedAttribute": "arlas.web.components.mapgl.input.mapLayers.layers",
+      "replacer": "layers"
+    },
+    {
+      "configPath": "config.map.json",
+      "replacedAttribute": "arlas.web.components.mapgl.input.mapLayers.externalEventLayers",
+      "replacer": "external-event-layers"
+    }
+  ]
+}

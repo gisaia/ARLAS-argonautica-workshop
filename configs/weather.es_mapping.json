@@ -1,0 +1,70 @@
+{
+    "mappings": {
+      "dynamic": false,
+      "properties": {
+        "internal": {
+          "properties": {
+            "fulltext": {
+              "type": "text"
+            },
+            "autocomplete": {
+              "type": "keyword"
+            }
+          }
+        },
+        "date": {
+          "type": "date",
+          "format": "yyyy/MM/dd HH:mm:ss"
+        },
+        "latitude": {
+          "type": "double"
+        },
+        "longitude": {
+          "type": "double"
+        },
+        "current_speed": {
+          "type": "double"
+        },
+        "current_angle": {
+          "type": "double"
+        },
+        "SLA": {
+          "type": "double"
+        },
+        "SST": {
+          "type": "double"
+        },
+        "chl": {
+          "type": "double"
+        },
+        "point_geom": {
+          "type": "geo_point"
+        },
+        "unique_id": {
+          "type": "keyword"
+        },
+        "dayOfYear": {
+          "type": "long"
+        },
+        "weekOfYear": {
+          "type": "long"
+        },
+        "month_name": {
+          "type": "keyword"
+        },
+        "year": {
+          "type": "keyword"
+        },
+        "timestamp": {
+          "type": "date",
+          "format": "epoch_second"
+        },
+        "box_geom": {
+          "type": "geo_shape"
+        },
+        "location_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
