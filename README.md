@@ -92,8 +92,8 @@ This subset is stored in `argonautica_data.csv`. It contains __8 755__ positions
 - timestamp: the UNIX timestamp of the measure. It is used to indicate the temporality of the measure to ARLAS as seen in the `argonautica_collection.json`
 - trail_id: the unique ID of this record
 - trail_geom: the WKT line linking this point and the next one
-- gps_speed: the computed GPS speed
-- gps_bearing: the computed GPS orientation
+- gps_speed: the computed GPS speed (m/s)
+- gps_bearing: the computed GPS orientation (°)
 - current_speed; current_angle; SLA; SST; CHL: climate conditions interpolated from the weather dataset
 - dayOfYear; weekOfYear; month; year: helpers for the representation of periodic temporal data
 
@@ -120,11 +120,11 @@ The weather dataset is built by associating [Copernicus](https://resources.marin
 This subset is stored in `weather_data.csv`. It contains around __57 199__ processed weather records described with the following columns:
 
 - date; latitude; longitude: temporal and geospatial coordinates of the record
-- SLA: Sea Level Anomaly, or the difference in height between the avergae global sea height and the measured one ($m$)
-- SST: Sea Surface Temperature ($°C$)
-- chl: the quantity of chlorophyll measured ($mg/m^3$)
-- current_angle: the angle of the average surface currents ($°$)
-- current_speed: the speed of the average surface currents ($m/s$)
+- SLA: Sea Level Anomaly, or the difference in height between the avergae global sea height and the measured one (m)
+- SST: Sea Surface Temperature (°C)
+- chl: the quantity of chlorophyll measured (mg/m^3)
+- current_angle: the angle of the average surface currents (°)
+- current_speed: the speed of the average surface currents (m/s)
 - timestamp: the UNIX timestamp of the measure. It is used to indicate the temporality of the measure to ARLAS as seen in the `weather_collection.json`
 - unique_id: the unique ID of this record
 - dayOfYear; weekOfYear; month_name; year: helpers for the representation of periodic temporal data
